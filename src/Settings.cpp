@@ -47,12 +47,13 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 #endif
 
-#ifdef HAVE_OPENCV_NONFREE
-  #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >=4
-  #include <opencv2/nonfree/gpu.hpp>
-  #include <opencv2/nonfree/features2d.hpp>
-  #endif
-#endif
+//#ifdef HAVE_OPENCV_NONFREE
+//  #if CV_MAJOR_VERSION == 2 && CV_MINOR_VERSION >=4
+  //#include <opencv2/nonfree/gpu.hpp>
+  //#include <opencv2/nonfree/features2d.hpp>
+//  #endif
+//#endif
+#include <opencv2/features2d.hpp>
 #ifdef HAVE_OPENCV_XFEATURES2D
   #include <opencv2/xfeatures2d.hpp>
   #include <opencv2/xfeatures2d/cuda.hpp>
@@ -406,7 +407,8 @@ public:
 	: fast_(CVCUDA::FastFeatureDetector::create(
 			threshold,
 			nonmaxSuppression,
-			CVCUDA::FastFeatureDetector::TYPE_9_16,
+			cv::FastFeatureDetector::TYPE_9_16,
+			//CVCUDA::FastFeatureDetector::TYPE_9_16,
 			max_npoints))
 #endif
 #endif
